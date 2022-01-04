@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Delete_Access_Check__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description
+  >Delete access to records while leveraging the Login to Experience as User functionality. Check to enforce security. 
+Only users with the delete access while leveraging the Login to Experience as User functionality will be able to edit.</description>
+    <externalId>false</externalId>
+    <fieldManageability>SubscriberControlled</fieldManageability>
+    <label>Delete Access Check</label>
+    <type>Checkbox</type>
+</CustomField>

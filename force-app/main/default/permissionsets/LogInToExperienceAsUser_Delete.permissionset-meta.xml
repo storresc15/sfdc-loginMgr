@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description
+  >Login To Experience Manager delete access for users. This permission should be assigned to users that require delete access while leveraging the Login to Experience As User functionality in Salesforce.</description>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>LogInToExperienceAsUser_Delete</label>
+</PermissionSet>

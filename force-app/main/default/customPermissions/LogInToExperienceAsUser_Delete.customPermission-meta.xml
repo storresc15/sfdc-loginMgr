@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomPermission xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description
+  >Login To Experience Manager delete access for profiles. This permission should be assigned to profiles so that users assigned to that profile are granted delete access while leveraging the Login to Experience As User functionality in Salesforce.</description>
+    <isLicensed>false</isLicensed>
+    <label>LogInToExperienceAsUser_Delete</label>
+</CustomPermission>

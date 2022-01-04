@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SObject__c</fullName>
+    <caseSensitive>false</caseSensitive>
+    <description
+  >Selected Object to manage the access while leveraging the Log in to Experience as User in Salesforce</description>
+    <externalId>false</externalId>
+    <fieldManageability>SubscriberControlled</fieldManageability>
+    <label>SObject</label>
+    <length>60</length>
+    <required>true</required>
+    <type>Text</type>
+    <unique>true</unique>
+</CustomField>
