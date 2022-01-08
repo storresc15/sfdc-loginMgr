@@ -9,9 +9,9 @@ Developer                   Date                   Description
 -------------------------------------------------------------------------------
 Sebastian                 2022-06-01              Initial version
 *******************************************************************************/
-public with sharing class LogInToExperienceManagementController {
+global with sharing class LogInToExperienceManagementController {
   @AuraEnabled(cacheable=true)
-  public static SessionInfo getSessionInfo() {
+  global static SessionInfo getSessionInfo() {
     try {
       SessionInformationBuilder.SessionInformationWrapper sessionInformation = SessionInformationService.getSessionInfo();
       SessionInfo result = new SessionInfo();
@@ -27,12 +27,12 @@ public with sharing class LogInToExperienceManagementController {
 
   //Wrapper class to provide details to LWC
 
-  public class SessionInfo {
+  global class SessionInfo {
     @AuraEnabled
-    public String UserType;
+    global String UserType;
     @AuraEnabled
-    public Boolean HasPermission;
+    global Boolean HasPermission;
     @AuraEnabled
-    public Boolean IsLoggedInAsUser;
+    global Boolean IsLoggedInAsUser;
   }
 }
