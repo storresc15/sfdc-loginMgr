@@ -100,26 +100,7 @@ public with sharing class SessionInformationBuilder {
       userId = parentAuthSession != null ? parentAuthSession.UsersId : null;
     }
 
-    Map<Id, PermissionSet> psMap = new Map<Id, PermissionSet>(
-      [
-        SELECT ID, Name
-        FROM PermissionSet
-        WHERE
-          Id IN (
-            SELECT PermissionSetId
-            FROM PermissionSetAssignment
-            WHERE AssigneeId = :userId
-          )
-      ]
-    );
-
-    for (PermissionSet ps : psMap.values()) {
-      if (ps.Name == 'LogInToExperience_Permission_RW') {
-        //this.theSessionInformation.HasPermission = true;
-        return this;
-      }
-    }
-    //this.theSessionInformation.HasPermission = false;
+    grantPermissionByPermissionSets(userId);
 
     return this;
   }
@@ -138,6 +119,74 @@ public with sharing class SessionInformationBuilder {
     this.theSessionInformation.HasReadPermission = false;
     this.theSessionInformation.HasEditPermission = false;
     this.theSessionInformation.HasDeletePermission = false;
+
+    return this;
+  }
+
+  private SessionInformationBuilder grantPermissionByPermissionSets(
+    String userId
+  ) {
+    Map<Id, PermissionSet> psMap = new Map<Id, PermissionSet>(
+      [
+        SELECT ID, Name
+        FROM PermissionSet
+        WHERE
+          Id IN (
+            SELECT PermissionSetId
+            FROM PermissionSetAssignment
+            WHERE AssigneeId = :userId
+          )
+      ]
+    );
+    Set<Id> assigned = psMap.keySet();
+
+    for (PermissionSet ps : psMap.values()) {
+      switch on ps.Name {
+        when 'LogInToExperienceAsUser_Create' {
+          this.theSessionInformation.HasCreatePermission = true;
+        }
+        when 'LogInToExperienceAsUser_Read' {
+          this.theSessionInformation.HasReadPermission = true;
+        }
+        when 'LogInToExperienceAsUser_Edit' {
+          this.theSessionInformation.HasEditPermission = true;
+        }
+        when 'LogInToExperienceAsUser_Delete' {
+          this.theSessionInformation.HasDeletePermission = true;
+        }
+        when else {
+          continue;
+        }
+      }
+    }
+    for (CustomPermission cp : [
+      SELECT DeveloperName
+      FROM CUstomPermission
+      WHERE
+        Id IN (
+          SELECT SetupEntityId
+          FROM SetUpEntityAccess
+          WHERE SetupEntityType = 'CustomPermission' AND ParentId IN :assigned
+        )
+    ]) {
+      switch on cp.DeveloperName {
+        when 'LogInToExperienceAsUser_Create' {
+          this.theSessionInformation.HasCreatePermission = true;
+        }
+        when 'LogInToExperienceAsUser_Read' {
+          this.theSessionInformation.HasReadPermission = true;
+        }
+        when 'LogInToExperienceAsUser_Edit' {
+          this.theSessionInformation.HasEditPermission = true;
+        }
+        when 'LogInToExperienceAsUser_Delete' {
+          this.theSessionInformation.HasDeletePermission = true;
+        }
+        when else {
+          continue;
+        }
+      }
+    }
 
     return this;
   }

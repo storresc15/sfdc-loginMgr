@@ -17,7 +17,10 @@ global with sharing class LogInToExperienceManagementController {
       SessionInfo result = new SessionInfo();
       result.UserType = sessionInformation.UserType;
       result.IsLoggedInAsUser = sessionInformation.IsLoggedInAsUser;
-      result.HasPermission = sessionInformation.HasCreatePermission; //To be updated
+      result.HasCreatePermission = sessionInformation.HasCreatePermission;
+      result.HasReadPermission = sessionInformation.HasReadPermission;
+      result.HasEditPermission = sessionInformation.HasEditPermission;
+      result.HasDeletePermission = sessionInformation.HasDeletePermission;
 
       return result;
     } catch (Exception e) {
@@ -31,8 +34,14 @@ global with sharing class LogInToExperienceManagementController {
     @AuraEnabled
     global String UserType;
     @AuraEnabled
-    global Boolean HasPermission;
-    @AuraEnabled
     global Boolean IsLoggedInAsUser;
+    @AuraEnabled
+    global Boolean HasCreatePermission;
+    @AuraEnabled
+    global Boolean HasReadPermission;
+    @AuraEnabled
+    global Boolean HasEditPermission;
+    @AuraEnabled
+    global Boolean HasDeletePermission;
   }
 }
