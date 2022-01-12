@@ -12,28 +12,56 @@ Sebastian                 2022-07-01              Initial version
 global with sharing class LogInToExperienceManagementTrigger {
   //Review the name of the actual method, it starts like this as a POC
   global static void handleObjectPermission(List<SObject> newList) {
-    //check the object type of the parameter list
+    //check the object type of the parameter list and check the trigger context
+    if (Trigger.isExecuting && Trigger.isExecuting) {
+      String objectType = String.valueOf(newList[0].getSObjectType());
+      String triggerOperation = String.valueOf(Trigger.operationType);
 
-    //Get the metadata types that should enforce the permissions
+      //Get the metadata types that should enforce the permissions
+      LogInToExperienceObjectManager__mdt objMdt = LogInToExperienceObjectManager__mdt.getInstance(
+        objectType
+      );
 
-    //if the Sobject is found, then continue with the check of the permissions
+      //if the Sobject is found, then continue with the check of the permissions
+      if (objMdt != null) {
+        //Get the Session information of the user that is currently triggering this
+        SessionInformationBuilder.SessionInformationWrapper sessionInformation = SessionInformationService.getSessionInfo();
 
-    //Get the Session information of the user that is currently triggering this
+        //if the user if leveraging the login to experience as user, then enforce the permissions:
+        if (sessionInformation.IsLoggedInAsUser) {
+          //Does the user has create access
+          Boolean hasCreateAccess = sessionInformation.HasCreatePermission;
+          //Does the user has update access
+          Boolean hasEditAccess = sessionInformation.HasEditPermission;
+          // Does the user has delete access
+          Boolean hasDeleteAccess = sessionInformation.HasDeletePermission;
 
-    //if the user if leveraging the login to experience as user, then enforce the permissions:
+          //Do a switch on the type of transaction comming from the trigger
+          switch on triggerOperation {
+            when 'BEFORE_INSERT' {
+              validatePermission(hasCreateAccess);
+            }
+            when 'BEFORE_UPDATE' {
+              validatePermission(hasEditAccess);
+            }
+            when 'BEFORE_DELETE' {
+              validatePermission(hasDeleteAccess);
+            }
+            when else {
+            }
+          }
+        }
+      }
+    }
+  }
 
-    //Does the user has read access (To be checked if this applies??)
-
-    //Does the user has create access
-    //Does the user has update access
-    // Does the user has delete access
-
-    //Do a switch on the type of transaction comming from the trigger
-
-    //switch if is create
-    //switch if is update
-    //switch if is delete
-
-    //I'm not considering any pattern for this, as it should be very generic to be added to any standard or custom object. Consider implementing one by considering the test cases first.
+  private static void validatePermission(
+    Boolean Permission /*, String Operation*/
+  ) {
+    if (!permission) {
+      throw new AuraHandledException(
+        'You do not have the required permission for this'
+      );
+    }
   }
 }
