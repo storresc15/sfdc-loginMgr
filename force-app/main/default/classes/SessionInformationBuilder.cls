@@ -9,7 +9,7 @@ Developer                   Date                   Description
 -------------------------------------------------------------------------------
 Sebastian                 2022-06-01              Initial version
 *******************************************************************************/
-public with sharing class SessionInformationBuilder {
+public without sharing class SessionInformationBuilder {
   public SessionInformationWrapper theSessionInformation;
 
   public SessionInformationBuilder() {

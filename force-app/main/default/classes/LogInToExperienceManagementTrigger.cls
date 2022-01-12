@@ -39,13 +39,25 @@ global with sharing class LogInToExperienceManagementTrigger {
           //Do a switch on the type of transaction comming from the trigger
           switch on triggerOperation {
             when 'BEFORE_INSERT' {
-              validatePermission(hasCreateAccess);
+              validatePermission(
+                hasCreateAccess,
+                objMdt.Create_Access_Check__c,
+                newList[0]
+              );
             }
             when 'BEFORE_UPDATE' {
-              validatePermission(hasEditAccess);
+              validatePermission(
+                hasEditAccess,
+                objMdt.Edit_Access_Check__c,
+                newList[0]
+              );
             }
             when 'BEFORE_DELETE' {
-              validatePermission(hasDeleteAccess);
+              validatePermission(
+                hasDeleteAccess,
+                objMdt.Delete_Access_Check__c,
+                newList[0]
+              );
             }
             when else {
             }
@@ -56,12 +68,14 @@ global with sharing class LogInToExperienceManagementTrigger {
   }
 
   private static void validatePermission(
-    Boolean Permission /*, String Operation*/
+    Boolean Permission,
+    Boolean metadataCheck,
+    SObject record
   ) {
-    if (!permission) {
-      throw new AuraHandledException(
-        'You do not have the required permission for this'
-      );
+    if (!permission && metadataCheck) {
+      record.addError(
+        'You do not have access to perform this operation in read only mode'
+      ); // Add here the custom label
     }
   }
 }
