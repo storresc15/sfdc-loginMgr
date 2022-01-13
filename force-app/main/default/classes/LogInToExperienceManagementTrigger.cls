@@ -73,9 +73,8 @@ global with sharing class LogInToExperienceManagementTrigger {
     SObject record
   ) {
     if (!permission && metadataCheck) {
-      record.addError(
-        'You do not have access to perform this operation in read only mode'
-      ); // Add here the custom label
+      String errorMessage = Label.Error_Message;
+      record.addError(errorMessage);
     }
   }
 }
