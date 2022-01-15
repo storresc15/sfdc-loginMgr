@@ -11,7 +11,7 @@ Sebastian                 2022-06-01              Initial version
 *******************************************************************************/
 public without sharing class SessionInformationService {
   public static SessionInformationBuilder.SessionInformationWrapper getSessionInfo() {
-    Map<String, String> sessionMap = Auth.SessionManagement.getCurrentSession();
+    Map<String, String> sessionMap = getSessionMap();
 
     SessionInformationBuilder.SessionInformationWrapper sessionInfo = new SessionInformationBuilder()
       .setUserType(sessionMap.get('UserType'))
@@ -23,5 +23,19 @@ public without sharing class SessionInformationService {
       .build();
 
     return sessionInfo;
+  }
+  private static Map<String, String> getSessionMap() {
+    //If fun by the Automated Process user - While attempting to access Auth.SessionManagement methods throws an UNCATCHABLE error
+    String userSession = UserInfo.getSessionId();
+    if (String.isBlank(userSession) || Test.isRunningTest()) {
+      return new Map<String, String>{
+        'SessionId' => userSession,
+        'UserType' => 'Standard',
+        'LoginHistoryId' => '11111111',
+        'LoginType' => 'Remote Access 2.0'
+      };
+    }
+
+    return Auth.SessionManagement.getCurrentSession();
   }
 }
