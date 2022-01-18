@@ -1,6 +1,54 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Profile xmlns="http://soap.sforce.com/2006/04/metadata">
+    <classAccesses>
+        <apexClass>LogInToExperienceController_Test</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>LogInToExperienceManagementController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>LogInToExperienceManagementTrigger</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>LogInToExperienceTrigger_Test</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>SessionInformationBuilder</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>SessionInformationBuilder_Test</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>SessionInformationService</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>SessionInformationService_Test</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
     <custom>false</custom>
+    <customPermissions>
+        <enabled>true</enabled>
+        <name>LogInToExperienceAsUser_Create</name>
+    </customPermissions>
+    <customPermissions>
+        <enabled>true</enabled>
+        <name>LogInToExperienceAsUser_Delete</name>
+    </customPermissions>
+    <customPermissions>
+        <enabled>true</enabled>
+        <name>LogInToExperienceAsUser_Edit</name>
+    </customPermissions>
+    <customPermissions>
+        <enabled>true</enabled>
+        <name>LogInToExperienceAsUser_Read</name>
+    </customPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field

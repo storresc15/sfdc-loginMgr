@@ -89,7 +89,7 @@ public without sharing class SessionInformationBuilder {
         WHERE Id = :sessionId
         LIMIT 1
       ];
-      parentSession = authSession.ParentId;
+      parentSession = authSession != null ? authSession.ParentId : '';
 
       AuthSession parentAuthSession = [
         SELECT Id, LoginHistoryId, UsersId
@@ -97,7 +97,7 @@ public without sharing class SessionInformationBuilder {
         WHERE Id = :parentSession
         LIMIT 1
       ];
-      userId = parentAuthSession != null ? parentAuthSession.UsersId : null;
+      userId = parentAuthSession != null ? parentAuthSession.UsersId : '';
     }
 
     grantPermissionByPermissionSets(userId);
@@ -123,9 +123,11 @@ public without sharing class SessionInformationBuilder {
     return this;
   }
 
+  @TestVisible
   private SessionInformationBuilder grantPermissionByPermissionSets(
     String userId
   ) {
+    system.debug('Inside the grant permission set method');
     Map<Id, PermissionSet> psMap = new Map<Id, PermissionSet>(
       [
         SELECT ID, Name

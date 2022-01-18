@@ -25,7 +25,7 @@ public without sharing class SessionInformationService {
     return sessionInfo;
   }
   private static Map<String, String> getSessionMap() {
-    //If fun by the Automated Process user - While attempting to access Auth.SessionManagement methods throws an UNCATCHABLE error
+    //If run by the Automated Process user - While attempting to access Auth.SessionManagement methods throws an UNCATCHABLE error
     String userSession = UserInfo.getSessionId();
     if (String.isBlank(userSession) || Test.isRunningTest()) {
       return new Map<String, String>{

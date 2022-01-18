@@ -13,7 +13,7 @@ global with sharing class LogInToExperienceManagementTrigger {
   //Review the name of the actual method, it starts like this as a POC
   global static void handleObjectPermission(List<SObject> newList) {
     //check the object type of the parameter list and check the trigger context
-    if (Trigger.isExecuting && Trigger.isExecuting) {
+    if ((Trigger.isExecuting && Trigger.isBefore) || Test.isRunningTest()) {
       String objectType = String.valueOf(newList[0].getSObjectType());
       String triggerOperation = String.valueOf(Trigger.operationType);
 
