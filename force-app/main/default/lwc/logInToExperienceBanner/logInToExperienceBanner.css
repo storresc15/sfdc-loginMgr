@@ -1,0 +1,9 @@
+.login-to-exp {
+  background: grey;
+  border: 2px solid red;
+  border-radius: 4px;
+}
+
+.login-to-exp_message {
+  text-align: center;
+}
