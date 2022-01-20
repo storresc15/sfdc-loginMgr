@@ -1,5 +1,12 @@
 <template>
-  <div class="login-to-exp slds-p-around_small" if:false={isLoggedInAsUser}>
-    <p class="login-to-exp_message">You are Logged In as {name}</p>
+  <div class="login-to-exp slds-p-around_small" if:true={isLoggedInAsUser}>
+    <template if:true={displayUser}>
+      <p class="login-to-exp_message">You are Logged In as {name}</p>
+    </template>
+    <template if:false={displayUser}>
+      <p class="login-to-exp_message">
+        You are Logged In to Experience as User
+      </p>
+    </template>
   </div>
 </template>
