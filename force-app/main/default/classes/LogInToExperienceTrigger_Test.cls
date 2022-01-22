@@ -66,9 +66,43 @@ public class LogInToExperienceTrigger_Test {
       LIMIT 1
     ];
     System.runAs(u) {
+      LogInToExperienceObjectManager__mdt theRecord = new LogInToExperienceObjectManager__mdt();
+      theRecord.DeveloperName = 'Account MTD';
+      theRecord.SObject__c = 'Account';
+      theRecord.Create_Access_Check__c = true;
+      theRecord.Edit_Access_Check__c = true;
+      theRecord.Delete_Access_Check__c = true;
+
       Account a = new Account(name = 'TestAcc');
+      ObjectManagerConfig_MTD.MDObjectManager testObjMdt = new ObjectManagerConfig_MTD.MDObjectManager(
+        theRecord
+      );
       LogInToExperienceManagementTrigger.handleObjectPermission(
         new List<SObject>{ a }
+      );
+      LogInToExperienceManagementTrigger.handleTriggerTransaction(
+        'BEFORE_INSERT',
+        true,
+        true,
+        true,
+        testObjMdt,
+        a
+      );
+      LogInToExperienceManagementTrigger.handleTriggerTransaction(
+        'BEFORE_UPDATE',
+        true,
+        true,
+        true,
+        testObjMdt,
+        a
+      );
+      LogInToExperienceManagementTrigger.handleTriggerTransaction(
+        'BEFORE_DELETE',
+        true,
+        true,
+        true,
+        testObjMdt,
+        a
       );
     }
   }
