@@ -9,9 +9,6 @@
     </targets>
     <targetConfigs>
       <targetConfig targets="lightningCommunity__Default">
-<!--          <property name="font" type="String" default="defaultText" />
-          <property name="color" type="String" default="defaultText" />
-          <property name="backgroundColor" type="String" default="defaultText" /> -->
           <property name="displayUserInfo" type="String" />
           <property name="displayUser" type="Boolean" default="true" />
       </targetConfig>

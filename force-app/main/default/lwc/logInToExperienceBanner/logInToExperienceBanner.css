@@ -1,9 +1,19 @@
 .login-to-exp {
-  background: grey;
-  border: 2px solid red;
-  border-radius: 4px;
+  background: repeating-linear-gradient(
+    45deg,
+    rgb(84, 105, 141),
+    rgb(84, 105, 141) 20px,
+    rgba(84, 105, 141, 0.97) 20px,
+    rgba(84, 105, 141, 0.97) 40px
+  );
 }
 
 .login-to-exp_message {
   text-align: center;
+  color: rgb(255, 255, 255);
+}
+
+.login-icon {
+  vertical-align: 0.2rem;
+  padding-right: 0.5rem;
 }

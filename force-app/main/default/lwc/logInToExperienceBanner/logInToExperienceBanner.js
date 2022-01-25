@@ -12,6 +12,9 @@ export default class LogInToExperienceBanner extends LightningElement {
   @track username;
   @api displayUserInfo;
   @api displayUser;
+  @api font;
+  @api color;
+  @api backgroundColor;
 
   //Wire functionas
   @wire(getRecord, {
