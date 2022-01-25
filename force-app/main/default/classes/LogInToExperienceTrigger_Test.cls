@@ -18,10 +18,9 @@ public class LogInToExperienceTrigger_Test {
     insert u;
     List<String> psNames = new List<String>{
       'LogInToExperienceAsUser_Create',
-      'LogInToExperienceAsUser_Read' /*, 
-                                                'LogInToExperienceAsUser_Edit', 
-                                                'LogInToExperienceAsUser_Delete'*/
+      'LogInToExperienceAsUser_Read'
     };
+
     List<PermissionSet> psets = [
       SELECT Id
       FROM PermissionSet
@@ -34,27 +33,6 @@ public class LogInToExperienceTrigger_Test {
         PermissionSetId = ps.Id
       );
     }
-
-    //Creating Accounts
-
-    /*
-        Map<String, Schema.SObjectType> m = Schema.getGlobalDescribe() ;
-        Schema.SObjectType s = m.get('Account') ;
-        Schema.DescribeSObjectResult r = s.getDescribe() ;
-        Map<String,Schema.SObjectField> fields = r.fields.getMap() ;
-        List<String> lstrequiredfields=new List<String>();
-        
-        for(String f : fields.keyset())
-        {
-        Schema.DescribeFieldResult desribeResult = fields.get(f).getDescribe();
-        if( desribeResult.isCreateable() && !desribeResult.isNillable() && !desribeResult.isDefaultedOnCreate() )
-        {
-            //This is mandatory / required field
-            lstrequiredfields.add(f);
-            
-        }
-        }
-*/
   }
 
   @IsTest

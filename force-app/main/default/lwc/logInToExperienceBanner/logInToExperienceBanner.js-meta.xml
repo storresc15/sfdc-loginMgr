@@ -7,10 +7,4 @@
       <target>lightningCommunity__Page</target>
       <target>lightningCommunity__Default</target>
     </targets>
-    <targetConfigs>
-      <targetConfig targets="lightningCommunity__Default">
-          <property name="displayUserInfo" type="String" />
-          <property name="displayUser" type="Boolean" default="true" />
-      </targetConfig>
-    </targetConfigs>
 </LightningComponentBundle>

@@ -79,7 +79,6 @@ public class SessionInformationBuilder_Test {
   @isTest
   static void testBuilderUser3() {
     //Mocking the External User
-    system.debug('The session ID in test class: ' + UserInfo.getSessionId());
     Map<String, String> externalUserMap = new Map<String, String>{
       'SessionId' => '1234455',
       'UserType' => 'CspLitePortal',
@@ -100,7 +99,6 @@ public class SessionInformationBuilder_Test {
   @isTest
   static void testBuilderUser4() {
     //Mocking the External User
-    system.debug('The session ID in test class: ' + UserInfo.getSessionId());
     Map<String, String> externalUserMap = new Map<String, String>{
       'SessionId' => '1234455',
       'UserType' => 'Standard',

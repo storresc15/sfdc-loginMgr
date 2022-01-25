@@ -34,15 +34,10 @@ public without sharing class SessionInformationBuilder {
   }
 
   public SessionInformationBuilder setLoginHistory(String loginHistory) {
-    system.debug('Inside the login history: ' + loginHistory);
     this.theSessionInformation.LoginHistory = loginHistory == null ||
       loginHistory == ''
       ? ''
       : loginHistory;
-    system.debug(
-      'Returning this as login history: ' +
-      this.theSessionInformation.LoginHistory
-    );
     return this;
   }
 
@@ -54,10 +49,6 @@ public without sharing class SessionInformationBuilder {
       this.theSessionInformation.IsLoggedInAsUser = true;
       return this;
     } else {
-      system.debug(
-        'Inside the setIsLoggedInAsUser:  the login history' +
-        this.theSessionInformation.LoginHistory
-      );
       this.theSessionInformation.IsLoggedInAsUser = false;
       return this;
     }
@@ -67,7 +58,6 @@ public without sharing class SessionInformationBuilder {
     String parentSession = '';
     String userId = '';
     String sessionId = this.theSessionInformation.SessionId;
-    system.debug('Inside setHasPermission: The session Id' + sessionId);
 
     if (this.theSessionInformation.UserType == 'Customer User') {
       grantFullPermission();
@@ -127,7 +117,6 @@ public without sharing class SessionInformationBuilder {
   private SessionInformationBuilder grantPermissionByPermissionSets(
     String userId
   ) {
-    system.debug('Inside the grant permission set method');
     Map<Id, PermissionSet> psMap = new Map<Id, PermissionSet>(
       [
         SELECT ID, Name

@@ -1,4 +1,4 @@
-import { LightningElement, api, wire, track } from "lwc";
+import { LightningElement, wire, track } from "lwc";
 import { getRecord } from "lightning/uiRecordApi";
 import USER_ID from "@salesforce/user/Id";
 import NAME_FIELD from "@salesforce/schema/User.Name";
@@ -10,11 +10,6 @@ export default class LogInToExperienceBanner extends LightningElement {
   @track isLoggedInAsUser = false;
   @track name;
   @track username;
-  @api displayUserInfo;
-  @api displayUser;
-  @api font;
-  @api color;
-  @api backgroundColor;
 
   //Wire functionas
   @wire(getRecord, {
