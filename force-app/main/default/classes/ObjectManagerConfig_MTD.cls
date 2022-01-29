@@ -33,11 +33,9 @@ public class ObjectManagerConfig_MTD {
       DeleteAccess = true;
       Name = MDName;
     }
-
-    //public MDObjectManager() {}
   }
 
-  //Configuration of The metadata (GetConfig)
+  //Configuration of The metadata
 
   @testvisible
   private static MDObjectManager cachedConfig = null;
@@ -62,9 +60,6 @@ public class ObjectManagerConfig_MTD {
       cachedConfig = new MDObjectManager('Default');
       return cachedConfig;
     }
-    /*cachedConfig = new MDObjectManager(settings[0]);
-    return cachedConfig;    // If configuration data is large, don't cache it outside of test mode
-*/
     return new MDObjectManager(settings[0]);
   }
 }

@@ -1,6 +1,6 @@
 /*******************************************************************************
 Class Name      : LogInToExperienceManagementController
-Description     : 
+Description     : Main Controller to be used on Aura and LWC to manage the permissions while user is Leveraging the Log in to Experience as User.
 Created By      : Sebastian Torres
 Created Date    : 2022-06-01
 Modification Log:
@@ -10,6 +10,9 @@ Developer                   Date                   Description
 Sebastian                 2022-06-01              Initial version
 *******************************************************************************/
 global with sharing class LogInToExperienceManagementController {
+  @testvisible
+  private static Boolean fakeException = false;
+
   @AuraEnabled(cacheable=true)
   global static SessionInfo getSessionInfo() {
     try {
@@ -21,6 +24,11 @@ global with sharing class LogInToExperienceManagementController {
       result.HasReadPermission = sessionInformation.HasReadPermission;
       result.HasEditPermission = sessionInformation.HasEditPermission;
       result.HasDeletePermission = sessionInformation.HasDeletePermission;
+
+      if (test.isRunningTest() && fakeException) {
+        List<SessionInfo> sessions = new List<SessionInfo>();
+        system.debug(sessions[20000].UserType);
+      }
 
       return result;
     } catch (Exception e) {

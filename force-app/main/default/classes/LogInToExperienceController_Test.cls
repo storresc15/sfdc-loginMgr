@@ -8,5 +8,14 @@ public class LogInToExperienceController_Test {
 
   @isTest
   static void testShouldGetException() {
+    List<Exception> exceptions = new List<Exception>();
+
+    try {
+      LogInToExperienceManagementController.fakeException = true;
+      LogInToExperienceManagementController.SessionInfo info = LogInToExperienceManagementController.getSessionInfo();
+    } catch (Exception e) {
+      exceptions.add(e);
+    }
+    system.assert(exceptions.size() > 0);
   }
 }

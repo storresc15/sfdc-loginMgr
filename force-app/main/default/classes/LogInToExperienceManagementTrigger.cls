@@ -1,6 +1,6 @@
 /*******************************************************************************
 Class Name      : LogInToExperienceManagementTrigger
-Description     : 
+Description     : Main trigger handler class for custom metadata defined objects to be checked while leveraging Log in To Experience as User.
 Created By      : Sebastian Torres
 Created Date    : 2022-07-01
 Modification Log:
@@ -10,18 +10,13 @@ Developer                   Date                   Description
 Sebastian                 2022-07-01              Initial version
 *******************************************************************************/
 global with sharing class LogInToExperienceManagementTrigger {
-  //Review the name of the actual method, it starts like this as a POC
   global static void handleObjectPermission(List<SObject> newList) {
     //check the object type of the parameter list and check the trigger context
     if ((Trigger.isExecuting && Trigger.isBefore) || Test.isRunningTest()) {
       String objectType = String.valueOf(newList[0].getSObjectType());
       String triggerOperation = String.valueOf(Trigger.operationType);
 
-      /*Get the metadata types that should enforce the permissions
-      LogInToExperienceObjectManager__mdt objMdt = LogInToExperienceObjectManager__mdt.getInstance(
-        objectType
-      );*/
-      //POC for use of Object Manager
+      //Get the metadata types that should enforce the permissions
       ObjectManagerConfig_MTD.MDObjectManager objMdt = ObjectManagerConfig_MTD.getConfig(
         objectType
       );
@@ -60,7 +55,6 @@ global with sharing class LogInToExperienceManagementTrigger {
     SObject record
   ) {
     if (!permission && metadataCheck && !Test.isRunningTest()) {
-      //String errorMessage = Label.Error_Message;
       record.addError(Label.Error_Message);
     }
   }

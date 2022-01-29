@@ -72,7 +72,7 @@ public without sharing class SessionInformationBuilder {
     }
 
     if (this.theSessionInformation.IsLoggedInAsUser) {
-      removePermission(); // To be reviewed
+      removePermission();
       AuthSession authSession = [
         SELECT Id, LoginHistoryId, ParentId
         FROM AuthSession
