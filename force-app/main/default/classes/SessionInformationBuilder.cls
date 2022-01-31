@@ -77,7 +77,6 @@ public without sharing class SessionInformationBuilder {
         SELECT Id, LoginHistoryId, ParentId
         FROM AuthSession
         WHERE Id = :sessionId
-        WITH SECURITY_ENFORCED
         LIMIT 1
       ];
       parentSession = authSession != null ? authSession.ParentId : '';
@@ -86,7 +85,6 @@ public without sharing class SessionInformationBuilder {
         SELECT Id, LoginHistoryId, UsersId
         FROM AuthSession
         WHERE Id = :parentSession
-        WITH SECURITY_ENFORCED
         LIMIT 1
       ];
       userId = parentAuthSession != null ? parentAuthSession.UsersId : '';
@@ -161,7 +159,6 @@ public without sharing class SessionInformationBuilder {
           FROM SetUpEntityAccess
           WHERE SetupEntityType = 'CustomPermission' AND ParentId IN :assigned
         )
-      WITH SECURITY_ENFORCED
     ]) {
       switch on cp.DeveloperName {
         when 'LogInToExperienceAsUser_Create' {

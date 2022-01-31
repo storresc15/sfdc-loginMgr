@@ -55,7 +55,6 @@ public without sharing class ObjectManagerConfig_MTD {
         Delete_Access_Check__c
       FROM LogInToExperienceObjectManager__mdt
       WHERE SObject__c = :mdName
-      WITH SECURITY_ENFORCED
     ];
 
     if (settings.size() == 0 || Test.isRunningTest()) {

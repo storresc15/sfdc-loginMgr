@@ -2,7 +2,7 @@
 <LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>52.0</apiVersion>
     <isExposed>true</isExposed>
-    <masterLabel>My Lightning Web Component</masterLabel>
+    <masterLabel>Login To Experience Banner</masterLabel>
     <targets>
       <target>lightningCommunity__Page</target>
       <target>lightningCommunity__Default</target>
