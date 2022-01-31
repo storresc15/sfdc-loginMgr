@@ -160,8 +160,8 @@ public without sharing class SessionInformationBuilder {
           SELECT SetupEntityId
           FROM SetUpEntityAccess
           WHERE SetupEntityType = 'CustomPermission' AND ParentId IN :assigned
-          WITH SECURITY_ENFORCED
         )
+      WITH SECURITY_ENFORCED
     ]) {
       switch on cp.DeveloperName {
         when 'LogInToExperienceAsUser_Create' {
