@@ -77,6 +77,7 @@ public without sharing class SessionInformationBuilder {
         SELECT Id, LoginHistoryId, ParentId
         FROM AuthSession
         WHERE Id = :sessionId
+        WITH SECURITY_ENFORCED
         LIMIT 1
       ];
       parentSession = authSession != null ? authSession.ParentId : '';
@@ -85,6 +86,7 @@ public without sharing class SessionInformationBuilder {
         SELECT Id, LoginHistoryId, UsersId
         FROM AuthSession
         WHERE Id = :parentSession
+        WITH SECURITY_ENFORCED
         LIMIT 1
       ];
       userId = parentAuthSession != null ? parentAuthSession.UsersId : '';
@@ -158,6 +160,7 @@ public without sharing class SessionInformationBuilder {
           SELECT SetupEntityId
           FROM SetUpEntityAccess
           WHERE SetupEntityType = 'CustomPermission' AND ParentId IN :assigned
+          WITH SECURITY_ENFORCED
         )
     ]) {
       switch on cp.DeveloperName {
@@ -187,14 +190,14 @@ public without sharing class SessionInformationBuilder {
   }
 
   public class SessionInformationWrapper {
-    public String UserType;
-    public String LoginType;
-    public String SessionId;
-    public String LoginHistory;
-    public Boolean HasCreatePermission;
-    public Boolean HasReadPermission;
-    public Boolean HasEditPermission;
-    public Boolean HasDeletePermission;
-    public Boolean IsLoggedInAsUser;
+    public String userType;
+    public String loginType;
+    public String sessionId;
+    public String loginHistory;
+    public Boolean hasCreatePermission;
+    public Boolean hasReadPermission;
+    public Boolean hasEditPermission;
+    public Boolean hasDeletePermission;
+    public Boolean isLoggedInAsUser;
   }
 }

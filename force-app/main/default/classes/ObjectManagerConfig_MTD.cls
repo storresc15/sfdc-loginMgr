@@ -9,13 +9,13 @@ Developer                   Date                   Description
 -------------------------------------------------------------------------------
 Sebastian                 2022-21-01              Initial version
 *******************************************************************************/
-public class ObjectManagerConfig_MTD {
+public without sharing class ObjectManagerConfig_MTD {
   public class MDObjectManager {
-    public String Name;
-    public String ManagedObject;
-    public Boolean CreateAccess;
-    public Boolean EditAccess;
-    public Boolean DeleteAccess;
+    public String name;
+    public String managedObject;
+    public Boolean createAccess;
+    public Boolean editAccess;
+    public Boolean deleteAccess;
 
     public MDObjectManager(LogInToExperienceObjectManager__mdt source) {
       ManagedObject = source.SObject__c;
@@ -26,12 +26,12 @@ public class ObjectManagerConfig_MTD {
     }
 
     // Constructor that sets default values
-    public MDObjectManager(String MDName) {
+    public MDObjectManager(String mDName) {
       ManagedObject = 'Account';
       CreateAccess = true;
       EditAccess = true;
       DeleteAccess = true;
-      Name = MDName;
+      Name = mDName;
     }
   }
 
@@ -41,8 +41,9 @@ public class ObjectManagerConfig_MTD {
   private static MDObjectManager cachedConfig = null;
 
   public static MDObjectManager getConfig(String mdName) {
-    if (cachedConfig != null)
+    if (cachedConfig != null) {
       return cachedConfig;
+    }
 
     List<LogInToExperienceObjectManager__mdt> settings = [
       SELECT
@@ -54,6 +55,7 @@ public class ObjectManagerConfig_MTD {
         Delete_Access_Check__c
       FROM LogInToExperienceObjectManager__mdt
       WHERE SObject__c = :mdName
+      WITH SECURITY_ENFORCED
     ];
 
     if (settings.size() == 0 || Test.isRunningTest()) {

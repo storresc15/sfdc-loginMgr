@@ -50,7 +50,7 @@ global with sharing class LogInToExperienceManagementTrigger {
   }
 
   private static void validatePermission(
-    Boolean Permission,
+    Boolean permission,
     Boolean metadataCheck,
     SObject record
   ) {
@@ -76,8 +76,6 @@ global with sharing class LogInToExperienceManagementTrigger {
       }
       when 'BEFORE_DELETE' {
         validatePermission(hasDeleteAccess, objMdt.DeleteAccess, record);
-      }
-      when else {
       }
     }
   }
