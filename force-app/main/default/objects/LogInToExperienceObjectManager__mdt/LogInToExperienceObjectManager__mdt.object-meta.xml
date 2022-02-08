@@ -4,5 +4,5 @@
   >The object Manager is used to set the CRUD permissions to users while leveraging the Log in to experience as user in Salesforce.</description>
     <label>Log In To Experience Object Manager</label>
     <pluralLabel>Log In To Experience Object Managers</pluralLabel>
-    <visibility>Protected</visibility>
+    <visibility>Public</visibility>
 </CustomObject>

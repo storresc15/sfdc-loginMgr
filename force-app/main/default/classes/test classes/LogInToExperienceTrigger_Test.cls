@@ -2,7 +2,7 @@
 public class LogInToExperienceTrigger_Test {
   @TestSetup
   static void setup() {
-    Profile p = [SELECT Id FROM Profile WHERE Name = 'System Administrator'];
+    Profile p = [SELECT Id FROM Profile LIMIT 1];
     User u = new User(
       Alias = 'standt',
       Email = 'systemuser@uravttest.com',

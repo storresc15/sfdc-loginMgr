@@ -2,11 +2,20 @@
   "packageDirectories": [
     {
       "path": "force-app",
-      "default": true
+      "default": true,
+      "package": "LoginToExperienceAsUser_Manager",
+      "versionName": "ver 0.1",
+      "versionNumber": "1.1.0.NEXT",
+      "ancestorId": "05i8c000000XZKqAAO"
     }
   ],
   "name": "LoginToExperienceAsUser_Manager",
-  "namespace": "",
+  "namespace": "uralxm",
   "sfdcLoginUrl": "https://login.salesforce.com",
-  "sourceApiVersion": "52.0"
+  "sourceApiVersion": "52.0",
+  "packageAliases": {
+    "LoginToExperienceAsUser_Manager": "0Ho8c000000fxhiCAA",
+    "LoginToExperienceAsUser_Manager@0.1.0-1": "04t8c000000xcLFAAY",
+    "LoginToExperienceAsUser_Manager@1.1.0-1": "04t8c000000xcLKAAY"
+  }
 }
